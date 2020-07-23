@@ -7,20 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.laptrinhjavaweb.model.NewModel;
-import com.laptrinhjavaweb.service.INewService;
 
 @Controller(value = "newControllerOfAdmin")
 public class NewController {
 	
-	@Autowired
-	private INewService newService;
 
 	@RequestMapping(value = "/quan-tri/bai-viet/danh-sach", method = RequestMethod.GET)
-	public ModelAndView showList(@ModelAttribute("model") NewModel model) {
+	public ModelAndView showList() {
 		ModelAndView mav = new ModelAndView("admin/new/list");
-		model.setListResult(newService.findAll());
-		mav.addObject("model", model);
 		return mav;
 	}
 	
