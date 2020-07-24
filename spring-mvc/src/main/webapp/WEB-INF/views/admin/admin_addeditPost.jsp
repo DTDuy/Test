@@ -8,7 +8,6 @@
 }
 </style>
 <%@ include file="/common/admin/header.jsp"%> --%>
-	
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2"></div>
@@ -20,7 +19,7 @@
 							<h2>Thêm Bài Viết</h2>
 	
 					</div>
-					<form action= "savepost" method="post" enctype="multipart/form-data">
+					<form action= '<c:url value="/admin/savepost"/>' method="post" enctype="multipart/form-data">
 						<input type="hidden" name="userid" value="1"> <input
 							type="hidden" name="username" value="vodanh"> <input
 							type="hidden" name="timepost" value="${post.getTime_post()}">
@@ -58,7 +57,5 @@
 		<div class="col-sm-2"></div>
 	</div>
 
-</body>
 
 
-</html>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%-- <%@ include file="/common/admin/header.jsp"%> --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
+<%@ include file="/common/taglib.jsp" %>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
@@ -50,9 +51,7 @@
 		</div>
 	</div>
 </div>
-
-</body>
-<script type="text/javascript"
+<%-- <script type="text/javascript"
 	src='<c:url value="resources/DataTables/js/bootstrap.js"/>'>
 	
 </script>
@@ -72,6 +71,5 @@
 	$(document).ready(function() {
 		$('#example3').DataTable();
 	});
-</script>
-</html>
+</script> --%>
 
