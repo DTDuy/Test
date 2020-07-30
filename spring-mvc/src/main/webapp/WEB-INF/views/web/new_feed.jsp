@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/common/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,52 +17,60 @@
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
-				<div style="height: 0px; overflow: hidden">
-					<input type="file" id="fileInput" name="fileInput" />
-				</div>
-				<div style="height: 0px; overflow: hidden">
-					<input type="file" id="fileThumbnail" name="fileThumbnail" />
-				</div>
 				<!-- Modal content-->
 				<div class="modal-content">
-					<form action="hello">
+					<form action='<c:url value="/trang-chu/addPost"></c:url>' enctype="multipart/form-data" method="post">
+						<div style="height: 0px; overflow: hidden">
+							<input type="file" id="fileInput" name="fileInput" multiple="multiple" />
+						</div>
+						<div style="height: 0px; overflow: hidden">
+							<input type="file" id="fileThumbnail" name="fileThumbnail" />
+						</div>
 						<div class="modal-header">
 							<h4 class="modal-title">Tạo bài viết mới</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">
 							<div class="form-group">
-								<label for='inputTitle'>Tiêu đề</label> <input type="text"
+								<label for='inputTitle'>Tiêu đề</label> <input type="text" name='title'
 									class="form-control" id="inputTitle"
 									placeholder="nhập tiêu đề bài viết">
 							</div>
 							<div class="form-group">
 								<label for="contentPost">Nội dung</label>
-								<textarea class="form-control" id="contentPost" rows="6"></textarea>
+								<textarea name='content' class="form-control" id="contentPost" rows="6"></textarea>
 							</div>
 							<div class="form-group">
-								<label for='inputAddress'>Địa chỉ</label> <input type="text"
+								<label for='inputAddress'>Địa chỉ</label> <input type="text" name='address'
 									class="form-control" id="inputAddress"
 									placeholder="nhập địa chỉ">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="inputCity">Thành phố</label> <input type="text"
+									<label for="inputCity">Thành phố</label> <input type="text" name='city'
 										class="form-control" id="inputCity">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="inputState">Tỉnh</label> <select id="inputState"
-										class="form-control">
-										<option selected>Choose...</option>
-										<option>...</option>
-									</select>
+									<label for="inputState">Tỉnh</label> <input type="text" name='state'
+										class="form-control" id="inputState">
 								</div>
 							</div>
-							<div class="btn-group">
+							<div class="form-row">
+							<div class="btn-group form-group col-md-8">
 								<button type="button" class="btn btn-primary"
 									onclick="chooseFile('fileInput');">Ảnh bài viết</button>
 								<button type="button" class="btn btn-primary"
 									onclick="chooseFile('fileThumbnail');">Ảnh Thumbnail</button>
+							</div>
+							<div class="form-group col-md-4">
+									<label for="inputState">Loại review</label> <select name='reviewType' id="inputState"
+										class="form-control">
+										<option selected>Choose...</option>
+										<c:forEach var='item' items='${listCategory }'>
+										<option>${item.getName()}</option>
+										</c:forEach>
+									</select>
+								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -73,6 +82,10 @@
 				</div>
 
 			</div>
+		</div>
+		
+		<div>
+		
 		</div>
 		<!-- Page Content -->
 
