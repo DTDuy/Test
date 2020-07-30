@@ -26,5 +26,6 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/template/web/vendor/jquery/jquery.min.js'/>"></script>
 	<script src="<c:url value='/template/web/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
+	<script src="<c:url value='/template/web/vendor/common/common.js'/>"></script>
 </body>
 </html>
