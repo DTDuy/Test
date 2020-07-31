@@ -16,7 +16,9 @@ public class Post_X {
 	private String title;
 	@Type(type="text")
 	private String content;
+	private String shortDecription;
 	private String time_post;
+	private String address;
 	private long user_id;
 	private String username;
 	private long category_id;
@@ -43,6 +45,16 @@ public class Post_X {
 		this.username = username;
 	}
 
+	public String getShortDecription() {
+		return shortDecription;
+	}
+
+
+	public void setShortDecription(String shortDecription) {
+		this.shortDecription = shortDecription;
+	}
+
+
 	public String getImgThumbnail() {
 		return imgThumbnail;
 	}
@@ -61,6 +73,16 @@ public class Post_X {
 	public Post_X() {
 		super();
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 
 	public long getId() {
 		return id;

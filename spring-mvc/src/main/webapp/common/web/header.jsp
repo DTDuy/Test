@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
 	<div class="container">
-		<a class="navbar-brand" href="#">Start Bootstrap</a>
+		<a class="navbar-brand" href="#">HTTT project -demo-</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -13,10 +13,10 @@
 				<li class="nav-item active"><a class="nav-link" href="#">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Services</a>
+				<!-- <li class="nav-item"><a class="nav-link" href="#">About</a></li> -->
+				<li class="nav-item"><a class="nav-link" href="#">Advance Search</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
 			</ul>
 		</div>
 	</div>

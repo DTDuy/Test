@@ -15,20 +15,26 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.laptrinhjavaweb.entity.Category;
+import com.laptrinhjavaweb.entity.Post_X;
 import com.laptrinhjavaweb.service.CategoryService;
+import com.laptrinhjavaweb.service.Post_XService;
 
 @Controller(value = "newFeedControllerOfWeb")
 public class NewFeedController {
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	Post_XService postService;
 	@RequestMapping(value = "/trang-chu/newFeed", method = RequestMethod.GET)
 	public String showNewFeed(Model model) {
 		List<Category> listCategory = categoryService.findAll();
 		model.addAttribute("listCategory", listCategory);
+		List<Post_X> listPost = postService.findAll();
+		model.addAttribute("listPost", listPost);
 		return "web/new_feed";
 	}
 	@RequestMapping(value = "/trang-chu/addPost", method = RequestMethod.POST)
-	public String addNewFeed(@RequestParam("title")String title,@RequestParam("content")String content,
+	public String addNewFeed(@RequestParam("title")String title,@RequestParam("shortDecription")String shortDecription,@RequestParam("content")String content,
 							 @RequestParam("address")String address,@RequestParam("city")String city,
 							 @RequestParam("state")String state,@RequestParam("fileThumbnail")MultipartFile fileThumbnail,
 							 @RequestParam("reviewType")String reviewType,@RequestParam("fileInput")MultipartFile[] fileInput) {
@@ -46,6 +52,16 @@ public class NewFeedController {
 				if(i!=fileInput.length-1)
 					sb.append("|");
 			}
+			Post_X post = new Post_X();
+			post.setTitle(title);
+			post.setContent(content);
+			post.setAddress(address+", "+city+", "+state);
+			post.setTime_post(day);
+			post.setShortDecription(shortDecription);
+			post.setCategory_id(categoryService.findByName(reviewType).getId());
+			post.setImgThumbnail(fileThumbnailUrl);
+			post.setImgPost(sb.toString());
+			postService.save(post);
 			String fileImgPost = sb.toString();
 		} catch (Exception e) {
 

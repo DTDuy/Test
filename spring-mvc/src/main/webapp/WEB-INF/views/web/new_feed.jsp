@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>New Feed</h1>
+		<h1 class='display-3'>New Feed</h1>
 		<!-- Trigger the modal with a button -->
 		<button type="button" class="btn btn-primary btn-lg"
 			data-toggle="modal" data-target="#myModal">Tạo bài viết</button>
@@ -35,6 +35,11 @@
 								<label for='inputTitle'>Tiêu đề</label> <input type="text" name='title'
 									class="form-control" id="inputTitle"
 									placeholder="nhập tiêu đề bài viết">
+							</div>
+							<div class="form-group">
+								<label for='inputShortDecription'>Mô tả ngắn</label> <input type="text" name='shortDecription'
+									class="form-control" id="inputShortDecription"
+									placeholder="">
 							</div>
 							<div class="form-group">
 								<label for="contentPost">Nội dung</label>
@@ -83,19 +88,33 @@
 
 			</div>
 		</div>
-		
-		<div>
-		
+		<c:if test="${not empty listPost}">
+		<c:forEach var='item' items='${listPost }'>
+		<div class="row align-items-center my-5">
+			<div class="col-lg-7">
+			<img src="<c:url value='/file/${item.getImgThumbnail() }'/>" class="img-thumbnail" alt="Hinh anh thumbnail cua post" width="900" height="400">
+				<!-- <img class="img-fluid rounded mb-4 mb-lg-0"
+					src="http://placehold.it/900x400" alt=""> -->
+			</div>
+			<!-- /.col-lg-8 -->
+			<div class="col-lg-5">
+				 <h1 class="font-weight-light">${item.getTitle()}</h1>
+				<p>${item.getShortDecription() }</p> 
+				<a class="btn btn-primary" href="#">Chi tiết</a>
+			</div>
+			<!-- /.col-md-4 -->
 		</div>
+		</c:forEach>
+		</c:if>
 		<!-- Page Content -->
 
 		<!-- Heading Row -->
-		<div class="row align-items-center my-5">
+		<!-- <div class="row align-items-center my-5">
 			<div class="col-lg-7">
 				<img class="img-fluid rounded mb-4 mb-lg-0"
 					src="http://placehold.it/900x400" alt="">
 			</div>
-			<!-- /.col-lg-8 -->
+			/.col-lg-8
 			<div class="col-lg-5">
 				<h1 class="font-weight-light">Business Name or Tagline</h1>
 				<p>This is a template that is great for small businesses. It
@@ -104,8 +123,8 @@
 					template for any project you want!</p>
 				<a class="btn btn-primary" href="#">Call to Action!</a>
 			</div>
-			<!-- /.col-md-4 -->
-		</div>
+			/.col-md-4
+		</div> -->
 		<!-- /.row -->
 
 		Call to Action Well

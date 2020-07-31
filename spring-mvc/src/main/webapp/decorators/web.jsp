@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="<c:url value='/template/web/vendor/common/icon.png'/>">
 <title>Trang chủ</title>
 
 <!-- Bootstrap core CSS -->
