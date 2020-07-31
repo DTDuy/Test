@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,10 +63,13 @@ public class NewFeedController {
 			post.setImgThumbnail(fileThumbnailUrl);
 			post.setImgPost(sb.toString());
 			postService.save(post);
-			String fileImgPost = sb.toString();
 		} catch (Exception e) {
 
 		}
 		return "redirect:/trang-chu/newFeed";
+	}
+	@RequestMapping(value = "/trang-chu/showPostDetail", method = RequestMethod.GET)
+	public String showPostDetail(@Param("id")long id) {
+		return "web/post_detail";
 	}
 }
