@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ include file="/common/taglib.jsp" %>
+<%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +19,11 @@
 			<div class="modal-dialog">
 				<!-- Modal content-->
 				<div class="modal-content">
-					<form action='<c:url value="/trang-chu/addPost"></c:url>' enctype="multipart/form-data" method="post">
+					<form action='<c:url value="/trang-chu/addPost"></c:url>'
+						enctype="multipart/form-data" method="post">
 						<div style="height: 0px; overflow: hidden">
-							<input type="file" id="fileInput" name="fileInput" multiple="multiple" />
+							<input type="file" id="fileInput" name="fileInput"
+								multiple="multiple" />
 						</div>
 						<div style="height: 0px; overflow: hidden">
 							<input type="file" id="fileThumbnail" name="fileThumbnail" />
@@ -32,47 +34,48 @@
 						</div>
 						<div class="modal-body">
 							<div class="form-group">
-								<label for='inputTitle'>Tiêu đề</label> <input type="text" name='title'
-									class="form-control" id="inputTitle"
+								<label for='inputTitle'>Tiêu đề</label> <input type="text"
+									name='title' class="form-control" id="inputTitle"
 									placeholder="nhập tiêu đề bài viết">
 							</div>
 							<div class="form-group">
-								<label for='inputShortDecription'>Mô tả ngắn</label> <input type="text" name='shortDecription'
-									class="form-control" id="inputShortDecription"
-									placeholder="">
+								<label for='inputShortDecription'>Mô tả ngắn</label> <input
+									type="text" name='shortDecription' class="form-control"
+									id="inputShortDecription" placeholder="">
 							</div>
 							<div class="form-group">
 								<label for="contentPost">Nội dung</label>
-								<textarea name='content' class="form-control" id="contentPost" rows="6"></textarea>
+								<textarea name='content' class="form-control" id="contentPost"
+									rows="6"></textarea>
 							</div>
 							<div class="form-group">
-								<label for='inputAddress'>Địa chỉ</label> <input type="text" name='address'
-									class="form-control" id="inputAddress"
+								<label for='inputAddress'>Địa chỉ</label> <input type="text"
+									name='address' class="form-control" id="inputAddress"
 									placeholder="nhập địa chỉ">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="inputCity">Thành phố</label> <input type="text" name='city'
-										class="form-control" id="inputCity">
+									<label for="inputCity">Thành phố</label> <input type="text"
+										name='city' class="form-control" id="inputCity">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="inputState">Tỉnh</label> <input type="text" name='state'
-										class="form-control" id="inputState">
+									<label for="inputState">Tỉnh</label> <input type="text"
+										name='state' class="form-control" id="inputState">
 								</div>
 							</div>
 							<div class="form-row">
-							<div class="btn-group form-group col-md-8">
-								<button type="button" class="btn btn-primary"
-									onclick="chooseFile('fileInput');">Ảnh bài viết</button>
-								<button type="button" class="btn btn-primary"
-									onclick="chooseFile('fileThumbnail');">Ảnh Thumbnail</button>
-							</div>
-							<div class="form-group col-md-4">
-									<label for="inputState">Loại review</label> <select name='reviewType' id="inputState"
-										class="form-control">
+								<div class="btn-group form-group col-md-8">
+									<button type="button" class="btn btn-primary"
+										onclick="chooseFile('fileInput');">Ảnh bài viết</button>
+									<button type="button" class="btn btn-primary"
+										onclick="chooseFile('fileThumbnail');">Ảnh Thumbnail</button>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="inputState">Loại review</label> <select
+										name='reviewType' id="inputState" class="form-control">
 										<option selected>Choose...</option>
 										<c:forEach var='item' items='${listCategory }'>
-										<option>${item.getName()}</option>
+											<option>${item.getName()}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -89,22 +92,27 @@
 			</div>
 		</div>
 		<c:if test="${not empty listPost}">
-		<c:forEach var='item' items='${listPost }'>
-		<div class="row align-items-center my-5">
-			<div class="col-lg-7">
-			<img src="<c:url value='/file/${item.getImgThumbnail() }'/>" class="img-thumbnail" alt="Hinh anh thumbnail cua post" width="900" height="400">
-				<!-- <img class="img-fluid rounded mb-4 mb-lg-0"
+			<c:forEach var='item' items='${listPost }'>
+				<div class="row align-items-center my-5">
+					<div class="col-lg-7">
+						<img src="<c:url value='/file/${item.getImgThumbnail() }'/>"
+							class="img-thumbnail" alt="Hinh anh thumbnail cua post"
+							width="900" height="400">
+						<!-- <img class="img-fluid rounded mb-4 mb-lg-0"
 					src="http://placehold.it/900x400" alt=""> -->
-			</div>
-			<!-- /.col-lg-8 -->
-			<div class="col-lg-5">
-				 <h1 class="font-weight-light">${item.getTitle()}</h1>
-				<p>${item.getShortDecription() }</p> 
-				<a class="btn btn-primary" href="#">Chi tiết</a>
-			</div>
-			<!-- /.col-md-4 -->
-		</div>
-		</c:forEach>
+					</div>
+					<!-- /.col-lg-8 -->
+					<div class="col-lg-5">
+						<h1 class="font-weight-light">${item.getTitle()}</h1>
+						<p>${item.getShortDecription() }</p>
+						<c:url var='postUrl' value='/trang-chu/showPostDetail'>
+						<c:param name="id" value='${item.getId() }'/>
+						</c:url>
+						<a class="btn btn-primary" href="${ postUrl}">Chi tiết</a>
+					</div>
+					<!-- /.col-md-4 -->
+				</div>
+			</c:forEach>
 		</c:if>
 		<!-- Page Content -->
 
@@ -126,7 +134,6 @@
 			/.col-md-4
 		</div> -->
 		<!-- /.row -->
-
 		Call to Action Well
 		<div class="card text-white bg-secondary my-5 py-4 text-center">
 			<div class="card-body">
