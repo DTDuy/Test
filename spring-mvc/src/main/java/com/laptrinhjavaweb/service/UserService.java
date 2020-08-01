@@ -1,8 +1,14 @@
 package com.laptrinhjavaweb.service;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.laptrinhjavaweb.entity.User;
@@ -15,6 +21,10 @@ public class UserService {
 	private UserRepository UserRP;
 
 	public boolean saveUser(User user) {
+		String password = user.getPassword();
+		SCryptPasswordEncoder pass = new SCryptPasswordEncoder();
+		// BCryptPasswordEncoder pass = new BCryptPasswordEncoder();
+		user.setPassword(pass.encode(password));
 		return UserRP.save(user) != null;
 	}
 
@@ -26,5 +36,8 @@ public class UserService {
 		return UserRP.findOne(id);
 	}
 
-	
+	public void delete(long id) {
+		UserRP.delete(id);
+	}
+
 }
